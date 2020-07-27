@@ -17,8 +17,9 @@ def preprocess_worlds(world):
     for concept in data:
         objects.append([]);
         for inst in concept:
+            objects.append([]);
             for shape in inst['shapes']:
-                objects[-1].append(shape['color'] + shape['shape']);
+                objects[-1][-1].append(shape['color'] + ' ' + shape['shape']);
     return objects
 
 
