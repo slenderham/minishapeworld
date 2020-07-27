@@ -11,6 +11,15 @@ def preprocess_hints(hints):
     hints = list(hints)
     return hints
 
+def preprocess_worlds(world):
+    data = json.load(world);
+    for concept in data:
+        objects.append([]);
+        for inst in concept:
+            for shape in inst['shapes']:
+                objects[-1].append(inst['color'] + inst['shape']);
+    return objects
+
 
 if __name__ == '__main__':
     from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
@@ -57,6 +66,13 @@ if __name__ == '__main__':
         hints_fname = os.path.join(split_dir, 'hints.json')
         with open(hints_fname, 'w') as f:
             json.dump(hints, f)
-
+        
         labels_fname = os.path.join(split_dir, 'labels.npz')
         np.savez(labels_fname, labels)
+
+        world_fname = os.path.join(args.dataset, f"{split}_worlds.json")
+        with open(world_fname, 'r') as f:
+            list_of_objects = preprocess_worlds(f);
+        world_new_fname = os.path.join(split_dir, 'worlds.json')
+        with open(world_new_fname, 'w') as f:
+            json.dump(list_of_objects, f);
