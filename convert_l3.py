@@ -13,11 +13,12 @@ def preprocess_hints(hints):
 
 def preprocess_worlds(world):
     data = json.load(world);
+    objects = [];
     for concept in data:
         objects.append([]);
         for inst in concept:
             for shape in inst['shapes']:
-                objects[-1].append(inst['color'] + inst['shape']);
+                objects[-1].append(shape['color'] + shape['shape']);
     return objects
 
 
