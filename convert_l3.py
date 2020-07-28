@@ -19,9 +19,8 @@ def preprocess_worlds(world):
         for inst in concept:
             objects.append([]);
             for shape in inst['shapes']:
-                objects[-1][-1].append(shape['color'] + ' ' + shape['shape']);
+                objects[-1][-1].append([shape['color'] + ' ' + shape['shape'], [shape['pos']['x']/10.0-3.2, shape['pos']['y']/10.0-3.2]]);
     return objects
-
 
 if __name__ == '__main__':
     from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
