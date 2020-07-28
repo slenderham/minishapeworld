@@ -77,3 +77,4 @@ if __name__ == '__main__':
         world_new_fname = os.path.join(split_dir, 'worlds.json')
         with open(world_new_fname, 'w') as f:
             json.dump(list_of_objects, f);
+            
